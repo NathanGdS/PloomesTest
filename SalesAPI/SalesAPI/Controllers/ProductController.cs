@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SalesAPI.Data.DTO;
 using SalesAPI.Services;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Return all Products")]
         [ProducesResponseType((200), Type = typeof(List<ProductDTO>))]
         [ProducesResponseType((400))]
         public IActionResult Get()
@@ -37,6 +39,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Return an specifc Product by ID")]
         [ProducesResponseType((200), Type = typeof(ProductDTO))]
         [ProducesResponseType((400))]
         public IActionResult Get(long id)
@@ -53,6 +56,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Create a new Product")]
         [ProducesResponseType((200), Type = typeof(ProductDTO))]
         [ProducesResponseType((400))]
         public IActionResult Post([FromBody] ProductDTO product)
@@ -70,6 +74,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpPut]
+        [SwaggerOperation(Summary = "Update an existing Product")]
         [ProducesResponseType((200), Type = typeof(ProductDTO))]
         [ProducesResponseType((400))]
         public IActionResult Put([FromBody] ProductDTO product)
@@ -80,6 +85,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delte an existing Product by ID")]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         [ProducesResponseType((404))]

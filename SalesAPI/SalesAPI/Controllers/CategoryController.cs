@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalesAPI.Data.DTO;
 using SalesAPI.Model;
 using SalesAPI.Services;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Return all Categories")]
         [ProducesResponseType((200), Type = typeof(List<CategoryDTO>))]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
@@ -38,6 +40,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Return a specific Category by Id")]
         [ProducesResponseType((200), Type = typeof(CategoryDTO))]
         [ProducesResponseType((400))]
         public IActionResult Get(long id)
@@ -54,6 +57,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Create a new Category")]
         [ProducesResponseType((200), Type = typeof(CategoryDTO))]
         [ProducesResponseType((400))]
         [ProducesResponseType((401))]
@@ -71,6 +75,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [SwaggerOperation(Summary = "Update an existing Category")]
         [ProducesResponseType((200), Type = typeof(Product))]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
@@ -89,6 +94,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delete an existing Category")]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         [ProducesResponseType((404))]

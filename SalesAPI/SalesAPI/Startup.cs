@@ -86,7 +86,18 @@ namespace SalesAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SalesAPI", Version = "v1" });
+                c.EnableAnnotations();
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "SalesAPI",
+                    Version = "v1",
+                    Description = "Api developed for Ploomes Test",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Nathan G. Santos",
+                        Email = "nathangarsantos@gmail.com",
+                        Url = new System.Uri("https://github.com/NathanGdS/")
+                    }
+                });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -135,7 +146,7 @@ namespace SalesAPI
 
             }
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SalesAPI v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ploomes Test - Sample API REST"));
 
             app.UseHttpsRedirection();
 

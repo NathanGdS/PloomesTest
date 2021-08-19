@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesAPI.Data.DTO;
 using SalesAPI.Services;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -16,25 +17,9 @@ namespace SalesAPI.Controllers
         {
             this._context = context;
         }
-
-        [HttpPost]
-        [ProducesResponseType((200), Type = typeof(UserDTO))]
-        [ProducesResponseType((400))]
-        [ProducesResponseType((401))]
-        public IActionResult Post([FromBody] UserDTO user)
-        {
-            try
-            {
-                return Ok(_context.Create(user));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error: {ex.Message}");
-            }
-
-        }
         
         [HttpGet]
+        [SwaggerOperation(Summary = "Return all Users")]
         [ProducesResponseType((200), Type = typeof(List<UserDTO>))]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
@@ -52,6 +37,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Return an specifc User by ID")]
         [ProducesResponseType((200), Type = typeof(UserDTO))]
         [ProducesResponseType((400))]
         [ProducesResponseType((404))]
@@ -70,7 +56,26 @@ namespace SalesAPI.Controllers
 
         }
 
+        [HttpPost]
+        [SwaggerOperation(Summary = "Create a new User")]
+        [ProducesResponseType((200), Type = typeof(UserDTO))]
+        [ProducesResponseType((400))]
+        [ProducesResponseType((401))]
+        public IActionResult Post([FromBody] UserDTO user)
+        {
+            try
+            {
+                return Ok(_context.Create(user));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
+
+        }
+
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delete an User by ID")]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         [ProducesResponseType((404))]

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalesAPI.Data.DTO;
 using SalesAPI.Model;
 using SalesAPI.Services;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -21,23 +22,24 @@ namespace SalesAPI.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Return all Purchases")]
         [ProducesResponseType((200), Type = typeof(List<PurchaseDTO>))]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         public IActionResult Get()
         {
-            /*try
+            try
             {
                 return Ok(_context.FindAll());
             }
             catch (Exception ex)
             {
                 return BadRequest($"Error: {ex.Message}");
-            }*/
-            return Ok(_context.FindAll());
+            }
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Return an specific Purchase")]
         [ProducesResponseType((200), Type = typeof(PurchaseDTO))]
         [ProducesResponseType((400))]
         public IActionResult Get(long id)
@@ -54,6 +56,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Make a new Purchase")]
         [ProducesResponseType((200), Type = typeof(PurchaseDTO))]
         [ProducesResponseType((400))]
         [ProducesResponseType((401))]
@@ -71,6 +74,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [SwaggerOperation(Summary = "Update an Purchase")]
         [ProducesResponseType((200), Type = typeof(Purchase))]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
@@ -89,6 +93,7 @@ namespace SalesAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delete an Purchase")]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         [ProducesResponseType((404))]

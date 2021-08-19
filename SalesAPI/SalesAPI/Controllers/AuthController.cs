@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SalesAPI.Data.DTO;
 using SalesAPI.Services;
 using Swashbuckle.AspNetCore.Annotations;
@@ -30,6 +31,37 @@ namespace SalesAPI.Controllers
             if (token == null) return Unauthorized();
 
             return Ok(token);
+        }
+
+        [HttpPost]
+        [Route("refresh")]
+        [SwaggerOperation(Summary = "Refresh Token", Description = "Use the old access and refresh token to generate valids acces_token and refresh token")]
+        [SwaggerResponse(200, "Success", typeof(TokenDTO))]
+        [ProducesResponseType((400))]
+        public IActionResult Refresh([FromBody] RefreshDTO tokenDTO)
+        {
+            if (tokenDTO == null) return BadRequest("Invalid Token!");
+            TokenDTO token = _loginService.ValidateCredentials(tokenDTO);
+            if (token == null) return BadRequest("Invalid Token!");
+
+            return Ok(token);
+        }
+
+        [HttpPost]
+        [Route("revoke")]
+        [Authorize("Bearer")]
+        [SwaggerOperation(Summary = "Revoke Token")]
+        [ProducesResponseType((400))]
+        [ProducesResponseType((401))]
+        public IActionResult Revoke()
+        { 
+
+            string username = User.Identity.Name;
+            bool result = _loginService.RevokeToken(username);
+
+            if (!result) return BadRequest("Invalid Token!");
+
+            return NoContent();
         }
 
     }

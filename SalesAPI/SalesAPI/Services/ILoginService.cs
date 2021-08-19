@@ -9,7 +9,7 @@ namespace SalesAPI.Services
     public interface ILoginService
     {
         TokenDTO ValidateCredentials(AuthDTO user);
-        TokenDTO ValidateCredentials(TokenDTO token);
+        TokenDTO ValidateCredentials(RefreshDTO token);
         bool RevokeToken(string username);
     }
 }

@@ -88,7 +88,7 @@ namespace SalesAPI
             {
                 c.EnableAnnotations();
                 c.SwaggerDoc("v1", new OpenApiInfo {
-                    Title = "SalesAPI",
+                    Title = "Ploomes Test - Sample API REST",
                     Version = "v1",
                     Description = "Api developed for Ploomes Test",
                     Contact = new OpenApiContact
@@ -146,7 +146,7 @@ namespace SalesAPI
 
             }
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ploomes Test - Sample API REST"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample API V1"));
 
             app.UseHttpsRedirection();
 

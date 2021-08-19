@@ -62,7 +62,7 @@ namespace SalesAPI.Services.Implementations
                 );
         }
 
-        public TokenDTO ValidateCredentials(TokenDTO token)
+        public TokenDTO ValidateCredentials(RefreshDTO token)
         {
             var accessToken = token.AccessToken;
             var refreshToken = token.RefreshToken;

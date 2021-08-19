@@ -60,16 +60,11 @@ namespace SalesAPI.Controllers
         [ProducesResponseType((200), Type = typeof(PurchaseDTO))]
         [ProducesResponseType((400))]
         [ProducesResponseType((401))]
-        public IActionResult Post([FromBody] PurchaseDTO category)
+        public IActionResult Post([FromBody] PurchaseDTO purchase)
         {
-            try
-            {
-                return Ok(_context.Create(category));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error: {ex.Message}");
-            }
+ 
+          return Ok(_context.Create(purchase));
+
 
         }
 
@@ -79,11 +74,11 @@ namespace SalesAPI.Controllers
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         [ProducesResponseType((401))]
-        public IActionResult Put([FromBody] PurchaseDTO categoryUpdated)
+        public IActionResult Put([FromBody] PurchaseDTO purchaseUpdated)
         {
             try
             {
-                return Ok(_context.Update(categoryUpdated));
+                return Ok(_context.Update(purchaseUpdated));
             }
             catch (Exception ex)
             {

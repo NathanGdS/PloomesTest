@@ -25,6 +25,7 @@ namespace SalesAPI.Data.Converter.Implementations
             if (origin == null) return null;
             return new PurchaseDTO
             {
+                PurchaseId = origin.Id,
                 UserId = origin.UserId,
                 ProductId = origin.ProductId
             };

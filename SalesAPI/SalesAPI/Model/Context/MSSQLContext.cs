@@ -23,11 +23,23 @@ namespace SalesAPI.Model.Context
                 .HasForeignKey<Purchase>(p => p.ProductId)
                 .IsRequired();
 
-            modelBuilder.Entity<User>()
+
+            /*modelBuilder.Entity<User>()
                 .HasOne(p => p.Purchase)
                 .WithOne(i => i.User)
                 .HasForeignKey<Purchase>(p => p.ProductId)
+                .IsRequired();*/
+
+            modelBuilder.Entity<Purchase>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(p => p.UserId)
                 .IsRequired();
+
+            /*modelBuilder.Entity<User>()
+                .HasMany<Purchase>()
+                .WithOne(i => i.User)
+                .IsRequired();*/
         }
 
         public DbSet<Purchase> Purchases { get; set; }
